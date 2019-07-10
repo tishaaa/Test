@@ -2,12 +2,12 @@
 <testng-results skipped="0" failed="1" ignored="0" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="1749" started-at="2019-06-24T12:12:43Z" finished-at="2019-06-24T12:12:45Z">
+  <suite name="Default suite" duration-ms="2248" started-at="2019-06-27T08:27:52Z" finished-at="2019-06-27T08:27:54Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="1749" started-at="2019-06-24T12:12:43Z" finished-at="2019-06-24T12:12:45Z">
+    <test name="Default test" duration-ms="2248" started-at="2019-06-27T08:27:52Z" finished-at="2019-06-27T08:27:54Z">
       <class name="locationList">
-        <test-method status="FAIL" signature="test1()[pri:0, instance:locationList@43738a82]" name="test1" duration-ms="1708" started-at="2019-06-24T12:12:43Z" finished-at="2019-06-24T12:12:45Z">
+        <test-method status="FAIL" signature="test1()[pri:0, instance:locationList@43738a82]" name="test1" duration-ms="2212" started-at="2019-06-27T08:27:52Z" finished-at="2019-06-27T08:27:54Z">
           <exception class="java.lang.ClassCastException">
             <message>
               <![CDATA[java.util.HashMap cannot be cast to java.util.List]]>
@@ -15,7 +15,7 @@
             <full-stacktrace>
               <![CDATA[java.lang.ClassCastException: java.util.HashMap cannot be cast to java.util.List
 at io.restassured.path.json.JsonPath.getList(JsonPath.java:375)
-at locationList.test1(locationList.java:32)
+at locationList.test1(locationList.java:33)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)

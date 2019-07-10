@@ -35,8 +35,8 @@ public class locationList {
 		String names = response.jsonPath().getString("data.locations.name");
 		System.out.println(names);
 		String location = response.jsonPath().getString("data[0].locations.name[0]");
-
-
+		String lat = response.jsonPath().getString("data[0].locations.lat[0]");
+		String lng = response.jsonPath().getString("data[0].locations.lng[0]");
 
 
 	}
