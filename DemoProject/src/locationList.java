@@ -181,16 +181,18 @@ public class locationList {
 		System.out.println(partnerid);
 		System.out.println(scheduledate);
 		System.out.println(scheduletime);*/
-
-
-
-
-
-
-
-
-
-
+        Response response7 =
+                given()
+                        .header("app-key","111111")
+                        .header("app-secret","c1Dutiw4yP")
+                        .contentType(ContentType.JSON)
+                        .body(requestBody)
+                .get("/v1/vendors/orders")
+                .then().contentType(ContentType.JSON)
+                       .extract().response();
+        String message = response7.jsonPath().get("message");
+        //System.out.println(message);
+        Assert.assertEquals(message,"405 Method Not Allowed");
 
 
 
