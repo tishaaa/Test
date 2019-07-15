@@ -3,8 +3,13 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.eventFrom;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
+import netscape.javascript.JSObject;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import io.restassured.RestAssured;
@@ -51,6 +56,7 @@ public class locationList {
                         .extract().response();
 
         String mastercategory = response1.jsonPath().getString("data[0].id");
+		//System.out.println(mastercategory);
        // System.out.println(mastercategories);
         StringBuilder secondarycategoryurl = new StringBuilder()
 				.append("/v1/vendors/categories/")
@@ -70,6 +76,7 @@ public class locationList {
                         .extract().response();
 
 		String secondarycategory = response2.jsonPath().getString("data[0].id");
+		//System.out.println(secondarycategory);
 
 		StringBuilder serviceurl = new StringBuilder()
 				.append("/v1/vendors/categories/")
@@ -92,7 +99,7 @@ public class locationList {
 		String servicetype = response3.jsonPath().getString("data[0].type");
 		String serviceminquantity = response3.jsonPath().getString("data[0].min_quantity");
 		String servicequestion = response3.jsonPath().getString("data[0].questions");
-		//System.out.println(servicetype);
+		//System.out.println(serviceid);
 		//System.out.println(servicequestion);
 		String options = "";
 
@@ -126,6 +133,7 @@ public class locationList {
 						.extract().response();
 
 		String partnerid = response4.jsonPath().getString("data[0].id");
+		//System.out.println(partnerid);
 		Response response5 =
 				given()
 						.header("app-key","111111")
@@ -141,25 +149,40 @@ public class locationList {
 
 		String scheduledate = response5.jsonPath().getString("data[0].date");
 		String scheduletime = response5.jsonPath().getString("data[0].slots[0].key");
-
+		//System.out.println(scheduledate);
+		//System.out.println(scheduletime);
+		Map<String,String> requestBody = new HashMap<String,String>();
+		requestBody.put("lat", lat);
+		requestBody.put("lng", lng);
+		requestBody.put("services", servicelist.toString());
+		requestBody.put("partner", partnerid);
+		requestBody.put("mobile", "01790233889");
+		requestBody.put("date", scheduledate);
+		requestBody.put("time", scheduletime);
+		requestBody.put("address", "Mohammadpur");
+		requestBody.put("name", "Tisha");
 		Response response6 =
 		given()
 				.header("app-key","111111")
 				.header("app-secret","c1Dutiw4yP")
-				.param("lat", lat)
-				.param("lng", lng)
-				.param("services",servicelist)
-				.param("partner", partnerid)
-				.param("mobile", "01768359152")
-				.param("date", scheduledate)
-				.param("time", scheduletime)
-				.param("address", "Gulisthan")
-				.param("name", "Arnab")
+				.contentType(ContentType.JSON)
+				.body(requestBody)
 				.post("/v1/vendors/orders")
 				.then().assertThat().statusCode(200)
 				.contentType(ContentType.JSON)
 				.extract().response();
-		System.out.println(response6.jsonPath().getString("data"));
+		//System.out.println(response6.jsonPath().getString("data"));
+		String successCode = response6.jsonPath().get("data.message");
+		//System.out.println(successCode);
+		Assert.assertEquals(  successCode, "SUCCESSFUL");
+		/*System.out.println(lat);
+		System.out.println(lng);
+		System.out.println(servicelist.toString());
+		System.out.println(partnerid);
+		System.out.println(scheduledate);
+		System.out.println(scheduletime);*/
+
+
 
 
 
